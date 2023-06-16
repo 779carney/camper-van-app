@@ -119,4 +119,8 @@ const patchVan = async (req, res)=>{
   }
 }
 
-module.exports = { getVans, getVanById,postVanByOwner,postVan,patchVan};
+const deleteVanByOwner = async (req,res)=>{
+
+}
+
+module.exports = { getVans, getVanById,postVanByOwner,postVan,patchVan,deleteVanByOwner};
