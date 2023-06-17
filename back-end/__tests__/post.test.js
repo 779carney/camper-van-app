@@ -301,7 +301,7 @@ describe("/bookings", () => {
             });
     });
 })
-describe("/reviews", () => {
+describe("/vans/:id/reviews", () => {
     test("POST - STATUS: 201 - to post a new review object to the data base", () => {
         return request(app)
             .post("/vans/64873c83768e970eec9aa22a/reviews")
@@ -330,6 +330,7 @@ describe("/reviews", () => {
             })
             .expect(201)
             .then((response) => {
+                console.log(JSON.stringify(response.body.newReview));
                 const { rating, userId } = response.body.newReview;
                 expect(rating).toBe(1);
                 expect(userId).toBe("648733606b77da2cfea3e774")

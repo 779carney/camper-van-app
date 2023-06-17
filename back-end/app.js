@@ -30,13 +30,14 @@ mongoose
   })
   .catch((err) => console.log(err));
 
+
 app.get("/users", getUsers);
 app.get("/users/:id", getUserById);
 
 app.get("/vans", getVans);
 app.get("/vans/:id", getVanById);
 app.get("/vans/:id/reviews", getReviewByVanId);
-app.get("/bookings/:booking_id", getBookingById);
+app.get("/bookings/:booking_id", getBookingById);// need to change json so say returns van info aswell 
 app.get("/bookings", getBookings)
 
 app.get("/api", getApi)

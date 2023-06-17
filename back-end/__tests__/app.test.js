@@ -282,8 +282,9 @@ describe("/vans/:id/reviews", () => {
 
 describe("GET /bookings", () => {
   test("Should return STATUS - 200 responds with a list of bookings with required properties", () => {
-    return request(app).get("/bookings").then( ({body}) => {
-      body.bookings.forEach(({userId, vanId, startDate, endDate, totalCost, paymentDetails }) => {
+    return request(app).get("/bookings").then( (response) => {
+      const bookings = response.body.bookings;
+     bookings.forEach(({userId, vanId, startDate, endDate, totalCost, paymentDetails }) => {
         expect(typeof userId).toBe("string");
         expect(typeof vanId).toBe("string");
         expect(typeof startDate).toBe("string");

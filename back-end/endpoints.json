@@ -74,33 +74,118 @@
   },
   "GET /vans/:id": {
     "description": "returns a specific user object using the id",
-    "queries": ["id"],
-    "exampleResponse": 
+    "queries": [
+      "id"
+    ],
+    "exampleResponse": {
+      "_id": "64873c83768e970eec9aa22a",
+      "vanName": "The Voyager",
+      "description": "The Volkswagen California is a versatile and comfortable campervan that offers a perfect blend of functionality and style. It is an ideal choice for your next adventure. ",
+      "owner": "648733606b77da2cfea3e770",
+      "make": "Volkswagen",
+      "model": "California",
+      "year": 2022,
+      "amenities": [
+        "kitchen",
+        "sun roof",
+        "dining area"
+      ],
+      "pricePerNight": 50,
+      "sleeps": 2,
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8wKy1lKY3Wx2cPvKVs1lUWVnltoy4V2YOsw&usqp=CAU",
+        "https://media.gq-magazine.co.uk/photos/5e74910306bab00008958011/16:9/pass/20200320-VW-Electric-03.jpg",
+        "https://vanlifeadventure.com/wp-content/uploads/2019/06/vanlife-adventure-kepler-sixty-vw-camper-california-05.jpg"
+      ],
+      "__v": 0
+    }
+  },
+  "/vans/:id/reviews": {
+    "description": "returns an array of all the review objects in the data base",
+    "queries": [
+      "id"
+    ],
+    "exampleResponse": [
       {
-        "_id": "64873c83768e970eec9aa22a",
-        "vanName": "The Voyager",
-        "description": "The Volkswagen California is a versatile and comfortable campervan that offers a perfect blend of functionality and style. It is an ideal choice for your next adventure. ",
-        "owner": "648733606b77da2cfea3e770",
-        "make": "Volkswagen",
-        "model": "California",
-        "year": 2022,
-        "amenities": [
-          "kitchen",
-          "sun roof",
-          "dining area"
-        ],
-        "pricePerNight": 50,
-        "sleeps": 2,
-        "images": [
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8wKy1lKY3Wx2cPvKVs1lUWVnltoy4V2YOsw&usqp=CAU",
-          "https://media.gq-magazine.co.uk/photos/5e74910306bab00008958011/16:9/pass/20200320-VW-Electric-03.jpg",
-          "https://vanlifeadventure.com/wp-content/uploads/2019/06/vanlife-adventure-kepler-sixty-vw-camper-california-05.jpg"
-        ],
+        "_id": "648d824b77426fce93d8a281",
+        "userId": "648733606b77da2cfea3e774",
+        "vanId": "64873c83768e970eec9aa22a",
+        "rating": 1,
+        "createdAt": "2023-06-17T09:52:11.542Z",
+        "__v": 0
+      },
+      {
+        "_id": "648d824b77426fce93d8a27f",
+        "userId": "648733606b77da2cfea3e774",
+        "vanId": "64873c83768e970eec9aa22a",
+        "rating": 1,
+        "comment": "rubbish",
+        "createdAt": "2023-06-17T09:52:11.486Z",
+        "__v": 0
+      },
+      {
+        "_id": "648c7bd8c5dbbdd08bf7e8fb",
+        "userId": "648733606b77da2cfea3e774",
+        "vanId": "64873c83768e970eec9aa22a",
+        "rating": 1,
+        "createdAt": "2023-06-16T15:12:24.815Z",
+        "__v": 0
+      },
+      {
+        "_id": "648c7bd8c5dbbdd08bf7e8f9",
+        "userId": "648733606b77da2cfea3e774",
+        "vanId": "64873c83768e970eec9aa22a",
+        "rating": 1,
+        "comment": "rubbish",
+        "createdAt": "2023-06-16T15:12:24.771Z",
         "__v": 0
       }
-  }, 
-  "POST /users":{
-    "description":"post a user to the database and returns new user",
+    ]
+  },
+  "GET /bookings": {
+    "description": "returns an array of booking objects",
+    "queries": [],
+    "exampleResponse": [
+      {
+        "_id": "648b2d2cbd34fabd752b0b05",
+        "userId": "648733606b77da2cfea3e774",
+        "vanId": "64873c83768e970eec9aa22a",
+        "startDate": "2023-08-01T00:00:00.000Z",
+        "endDate": "2023-08-03T00:00:00.000Z",
+        "totalCost": 100,
+        "paymentDetails": "unpaid",
+        "__v": 0
+      },
+      {
+        "_id": "648b2d2cbd34fabd752b0b06",
+        "userId": "648733606b77da2cfea3e773",
+        "vanId": "64873c83768e970eec9aa22b",
+        "startDate": "2023-12-01T00:00:00.000Z",
+        "endDate": "2023-12-03T00:00:00.000Z",
+        "totalCost": 120,
+        "paymentDetails": "unpaid",
+        "__v": 0
+      }
+    ]
+  },
+  "GET /bookings/:booking_id": {
+    "description": "returns an booking object with the specific id",
+    "queries": [
+      "id"
+    ],
+    "exampleResponse": {
+      "_id": "648b2d2cbd34fabd752b0b05",
+      "userId": "648733606b77da2cfea3e774",
+      "vanId": "64873c83768e970eec9aa22a",
+      "startDate": "2023-08-01T00:00:00.000Z",
+      "endDate": "2023-08-03T00:00:00.000Z",
+      "totalCost": 100,
+      "paymentDetails": "unpaid",
+      "__v": 0
+    }
+  },
+  "POST /users": {
+    "description": "post a user to the database and returns new user",
     "queries": [],
     "exampleResponse": [
       {
@@ -120,34 +205,145 @@
       }
     ]
   },
-  "POST /:owner/vans":{
-    
-      "description":"post a van to a specific user in the database and returns new van",
-      "queries": ["owner"],
-      "exampleResponse": {
-        "_id": "64873c83768e970eec9aa22a",
-        "vanName": "The Voyager",
-        "description": "The Volkswagen California is a versatile and comfortable campervan that offers a perfect blend of functionality and style. It is an ideal choice for your next adventure. ",
-        "owner": "648733606b77da2cfea3e770",
-        "make": "Volkswagen",
-        "model": "California",
-        "year": 2022,
-        "amenities": [
-          "kitchen",
-          "sun roof",
-          "dining area"
-        ],
-        "pricePerNight": 50,
-        "sleeps": 2,
-        "images": [
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8wKy1lKY3Wx2cPvKVs1lUWVnltoy4V2YOsw&usqp=CAU",
-          "https://media.gq-magazine.co.uk/photos/5e74910306bab00008958011/16:9/pass/20200320-VW-Electric-03.jpg",
-          "https://vanlifeadventure.com/wp-content/uploads/2019/06/vanlife-adventure-kepler-sixty-vw-camper-california-05.jpg"
-        ],
-        "__v": 0
-      }
-  
-
+  "POST /vans": {
+    "description": "post a van to the database and returns new van",
+    "queries": [],
+    "exampleResponse": {
+      "_id": "64873c83768e970eec9aa22a",
+      "vanName": "The Voyager",
+      "description": "The Volkswagen California is a versatile and comfortable campervan that offers a perfect blend of functionality and style. It is an ideal choice for your next adventure. ",
+      "owner": "648733606b77da2cfea3e770",
+      "make": "Volkswagen",
+      "model": "California",
+      "year": 2022,
+      "amenities": [
+        "kitchen",
+        "sun roof",
+        "dining area"
+      ],
+      "pricePerNight": 50,
+      "sleeps": 2,
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8wKy1lKY3Wx2cPvKVs1lUWVnltoy4V2YOsw&usqp=CAU",
+        "https://media.gq-magazine.co.uk/photos/5e74910306bab00008958011/16:9/pass/20200320-VW-Electric-03.jpg",
+        "https://vanlifeadventure.com/wp-content/uploads/2019/06/vanlife-adventure-kepler-sixty-vw-camper-california-05.jpg"
+      ],
+      "__v": 0
     }
-
+  },
+  "POST /:owner/vans": {
+    "description": "post a van to a specific user in the database and returns new van",
+    "queries": [
+      "owner"
+    ],
+    "exampleResponse": {
+      "_id": "64873c83768e970eec9aa22a",
+      "vanName": "The Voyager",
+      "description": "The Volkswagen California is a versatile and comfortable campervan that offers a perfect blend of functionality and style. It is an ideal choice for your next adventure. ",
+      "owner": "648733606b77da2cfea3e770",
+      "make": "Volkswagen",
+      "model": "California",
+      "year": 2022,
+      "amenities": [
+        "kitchen",
+        "sun roof",
+        "dining area"
+      ],
+      "pricePerNight": 50,
+      "sleeps": 2,
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8wKy1lKY3Wx2cPvKVs1lUWVnltoy4V2YOsw&usqp=CAU",
+        "https://media.gq-magazine.co.uk/photos/5e74910306bab00008958011/16:9/pass/20200320-VW-Electric-03.jpg",
+        "https://vanlifeadventure.com/wp-content/uploads/2019/06/vanlife-adventure-kepler-sixty-vw-camper-california-05.jpg"
+      ],
+      "__v": 0
+    }
+  },
+  "POST /bookings": {
+    "description": " to post a new booking object to the data base",
+    "queries": [],
+    "exampleResponse": {
+      "_id": "648b2d2cbd34fabd752b0b05",
+      "userId": "648733606b77da2cfea3e774",
+      "vanId": "64873c83768e970eec9aa22a",
+      "startDate": "2023-08-01T00:00:00.000Z",
+      "endDate": "2023-08-03T00:00:00.000Z",
+      "totalCost": 100,
+      "paymentDetails": "unpaid",
+      "__v": 0
+    }
+  },
+  "POST /vans/:id/reviews": {
+    "description": " to post a new review object to a specific van in the data base using the id",
+    "queries": [
+      "id"
+    ],
+    "exampleResponse": {
+      "userId": "648733606b77da2cfea3e774",
+      "vanId": "64873c83768e970eec9aa22a",
+      "rating": 1,
+      "_id": "648d89d1ad9b52ec6e83c1fb",
+      "createdAt": "2023-06-17T10:24:17.158Z",
+      "__v": 0
+    }
+  },
+  "PATCH /users/:id": {
+    "description": "to patch an existing user in the data base  and return that user",
+    "queries": [
+      "id"
+    ],
+    "exampleResponse": {
+      "location": {
+        "region": "liverpool",
+        "postcode": "l189tn"
+      },
+      "_id": "648733606b77da2cfea3e774",
+      "username": "changed",
+      "firstName": "Kirestin",
+      "lastName": "Frank",
+      "email": "lorem.ipsum@icloud.com",
+      "password": "password5",
+      "phoneNumber": "07396904444",
+      "img": "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg",
+      "__v": 0
+    }
+  },
+  "PATCH /vans/:id": {
+    "description": "to patch an existing van in the data base  and return that van",
+    "queries": [
+      "id"
+    ],
+    "exampleResponse": {
+      "location": {
+        "region": "birmingham",
+        "postcode": "b929ed"
+      },
+      "availabilityDates": {
+        "startDate": "2023-09-01T00:00:00.000Z",
+        "endDate": "2024-09-01T00:00:00.000Z"
+      },
+      "_id": "64873c83768e970eec9aa22c",
+      "vanName": "Sea Change",
+      "description": "changed",
+      "owner": "648733606b77da2cfea3e772",
+      "make": "Ford",
+      "model": "Transit",
+      "year": 2023,
+      "amenities": [
+        "kitchen",
+        "sun roof",
+        "dining area",
+        "air conditioning",
+        "camping chairs"
+      ],
+      "pricePerNight": 40,
+      "sleeps": 3,
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8wKy1lKY3Wx2cPvKVs1lUWVnltoy4V2YOsw&usqp=CAU",
+        "https://www.woodstockcampers.co.uk/wp-content/uploads/2022/10/thumbnail_IMG_4963-scaled.jpg",
+        "https://www.knaus.com/fileadmin/media/global/open-graphs/camper-van/ktg-knaus-camper-van-uebersicht-opengraph.jpg"
+      ],
+      "__v": 0
+    }
   }
+}
