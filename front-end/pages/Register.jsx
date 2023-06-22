@@ -1,11 +1,14 @@
-import { Text, Button, ScrollView, TextInput, View,StyleSheet } from "react-native";
+import { Text, Button, ScrollView, TextInput, View, Image } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { postNewUser } from "../api";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import * as ImagePicker from 'expo-image-picker';
 
 export const Register = () => {
   const [createUser, setCreateUser] = useState(false);
+  const [image, setImage] = useState("");
+
   const { navigate } = useNavigation();
   const {
     control,
@@ -26,9 +29,28 @@ export const Register = () => {
   });
 
   const onSubmit = (data) => {
+    data.img = image
     postNewUser(data).then(({ data }) => {
       setCreateUser(true);
     });
+  };
+
+   const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      allowsMultipleSelection: false,
+      quality: 1
+    })
+
+    if (!result.cancelled) {
+      const img = result.assets[0].uri;
+      console.log(img)
+
+      setImage(img)
+      
+    } else {
+      alert('You did not select any image.');
+    }
   };
 
   return (
@@ -186,19 +208,10 @@ export const Register = () => {
           />
           {errors.phoneNumber && <Text style={styles.errorText}>This is required.</Text>}
 
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-              style={styles.input}
-                placeholder="image url"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-              />
-            )}
-            name="img"
-          />
+          <Button title="image upload" label="Upload Image" onPress={() => pickImage()} />
+          <Button title="reset-images" label="Reset" onPress={() => setImage("")
+          } />
+          <Image style={{width: 80, height: 80}} source={{ uri: image}} />
 
           <Button title="Sign up!" onPress={handleSubmit(onSubmit)} />
         </ScrollView>
